@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earn More — Side Income & Referral Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ai: #7c6fff;
+      --ai-dark: #5a52d5;
+      --ai-glow: rgba(124, 111, 255, 0.22);
+      --passive: #10b981;
+      --games: #f59e0b;
+      --crypto: #f97316;
+      --promo: #ec4899;
+      --bg: #0c0c10;
+      --surface: #16161e;
+      --surface2: #1e1e2a;
+      --surface3: #252533;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.15);
+      --text: #eaeaf4;
+      --muted: #7878a0;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(12,12,16,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: auto;
+      display: flex; align-items: center; gap: 4px;
+      height: 56px;
+      padding: 0 clamp(1rem, 4vw, 2rem);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-logo {
+      font-weight: 800; font-size: 1rem; letter-spacing: -.02em;
+      color: #fff; white-space: nowrap; margin-right: 12px;
+    }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; white-space: nowrap;
+      padding: 5px 11px; border-radius: 8px;
+      transition: color .15s, background .15s;
+      flex-shrink: 0;
+    }
+    nav a:hover { color: #fff; background: var(--surface2); }
+    nav a.ai-pill {
+      color: #a89dff; border: 1px solid rgba(124,111,255,.5);
+      font-weight: 700; background: rgba(124,111,255,.08);
+    }
+    nav a.ai-pill:hover { background: var(--ai); color: #fff; border-color: var(--ai); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: clamp(4rem, 9vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 5vw, 4rem);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -5%, rgba(124,111,255,.18), transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(16,185,129,.06), transparent),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(249,115,22,.05), transparent);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,111,255,.12); border: 1px solid rgba(124,111,255,.3);
+      color: #a89dff; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 99px; margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.03em;
+      background: linear-gradient(145deg, #ffffff 35%, #b8b0ff 65%, #7c6fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.1rem;
+    }
+    .hero p {
+      max-width: 520px; margin: 0 auto 2.2rem;
+      color: var(--muted); font-size: 1.05rem; font-weight: 400;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ai); color: #fff;
+      padding: 13px 28px; border-radius: 10px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px var(--ai-glow), 0 0 0 1px rgba(255,255,255,.05) inset;
+    }
+    .hero-cta:hover {
+      background: var(--ai-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--ai-glow);
+    }
+    .hero-stats {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 2rem; margin-top: 3rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -.03em; }
+    .stat-lbl { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 2px; }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1140px; margin: auto;
+      padding: 3.5rem clamp(1rem, 4vw, 2rem);
+    }
+    .section-header {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .section-icon-wrap {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .section-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+    .section-desc { color: var(--muted); font-size: 0.87rem; margin-top: 3px; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── AI TRAINER FEATURED ── */
+    #ai-trainer {
+      background:
+        linear-gradient(180deg, rgba(124,111,255,.1) 0%, transparent 100%);
+      border-top: 1px solid rgba(124,111,255,.2);
+      border-bottom: 1px solid var(--border);
+    }
+    #ai-trainer .section-icon-wrap {
+      background: rgba(124,111,255,.15); border-color: rgba(124,111,255,.3);
+    }
+    #ai-trainer .section-title { color: #c0b7ff; }
+
+    .ai-intro {
+      background: rgba(124,111,255,.08);
+      border: 1px solid rgba(124,111,255,.2);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.9rem; color: #b8b0ff;
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      line-height: 1.55;
+    }
+    .ai-intro .bulb { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex; flex-direction: column; gap: 0.9rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative;
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.4);
+    }
+    .card.ai-card {
+      border-color: rgba(124,111,255,.25);
+      background: linear-gradient(160deg, rgba(124,111,255,.07) 0%, var(--surface) 60%);
+    }
+    .card.ai-card:hover { border-color: rgba(124,111,255,.6); box-shadow: 0 12px 36px var(--ai-glow); }
+
+    /* Badge — first flex item, sits above card-top so no overlap */
+    .card.star-card::before,
+    .card.fast-card::before {
+      display: inline-flex;
+      align-self: flex-start;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: .06em;
+      padding: 3px 10px; border-radius: 99px;
+    }
+    .card.star-card::before { content: '⭐ TOP PICK'; background: var(--games); color: #000; }
+    .card.fast-card::before { content: '⚡ FAST CASH'; background: var(--promo); color: #fff; }
+
+    .card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: .5rem;
+    }
+    .card-name { font-weight: 800; font-size: 1rem; color: #fff; letter-spacing: -.01em; }
+    .card-payout {
+      font-size: 0.72rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 6px;
+      white-space: nowrap; flex-shrink: 0; line-height: 1.5;
+    }
+    .card-desc { color: var(--muted); font-size: 0.86rem; flex: 1; line-height: 1.55; }
+
+    .card-meta { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); font-size: 0.75rem; font-weight: 500;
+      padding: 2px 9px; border-radius: 6px;
+    }
+    .tag.effort { color: #34d399; border-color: rgba(52,211,153,.2); background: rgba(52,211,153,.06); }
+
+    .card-code { font-size: 0.78rem; color: var(--muted); }
+    .card-code span {
+      background: var(--surface2); border: 1px dashed rgba(255,255,255,.12);
+      color: #e8e8f0; font-family: 'Courier New', monospace; font-size: 0.8rem;
+      padding: 2px 8px; border-radius: 5px; margin-left: 5px;
+      user-select: all; cursor: copy;
+    }
+
+    .card-links { display: flex; flex-direction: column; gap: 0.4rem; margin-top: auto; }
+    .btn {
+      display: block; text-align: center;
+      padding: 10px 14px; border-radius: 9px;
+      font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; letter-spacing: .01em;
+      transition: opacity .15s, transform .15s, box-shadow .15s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-ai      { background: var(--ai); color: #fff; box-shadow: 0 2px 12px var(--ai-glow); }
+    .btn-passive { background: var(--passive); color: #fff; }
+    .btn-games   { background: var(--games); color: #000; }
+    .btn-crypto  { background: var(--crypto); color: #fff; }
+    .btn-promo   { background: var(--promo); color: #fff; }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--muted); background: transparent;
+    }
+    .btn-outline:hover { color: #fff; border-color: var(--border-hover); background: var(--surface2); }
+
+    /* payout pill colours */
+    .payout-ai      { background: rgba(124,111,255,.18); color: #b0a7ff; }
+    .payout-passive { background: rgba(16,185,129,.14);  color: #6ee7b7; }
+    .payout-games   { background: rgba(245,158,11,.14);  color: #fcd34d; }
+    .payout-crypto  { background: rgba(249,115,22,.14);  color: #fdba74; }
+    .payout-promo   { background: rgba(236,72,153,.14);  color: #f9a8d4; }
+
+    /* ── TOP PICKS section accent ── */
+    #top-picks .section-icon-wrap { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.25); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.8rem; line-height: 1.7;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">💸 EarnHub</span>
+    <a href="#ai-trainer" class="ai-pill">🤖 AI Trainer</a>
+    <a href="#skill-based">🛠️ Skill-Based</a>
+    <a href="#top-picks">⭐ Top Picks</a>
+    <a href="#passive">💤 Passive</a>
+    <a href="#games">🎮 Games</a>
+    <a href="#crypto">🪙 Crypto</a>
+    <a href="#promos">🏷️ Promos</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge">✦ Verified Referral Links — Free to Join</div>
+  <h1>Turn Your Time Into Money</h1>
+  <p>Passive apps, skill-based gigs, and AI training work — curated, tested, and ready to join. All links are live.</p>
+  <a href="#ai-trainer" class="hero-cta">Explore AI Trainer Jobs →</a>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">22+</div><div class="stat-lbl">Platforms Listed</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Free to Join</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-lbl">Upfront Cost</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     🤖  AI TRAINER — FEATURED SECTION
+═══════════════════════════════════════════ -->
+<section id="ai-trainer">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">🤖</div>
+      <div>
+        <div class="section-title">AI Trainer — Skill-Based Work</div>
+        <div class="section-desc">Help train and improve AI models — work from anywhere, set your own hours</div>
+      </div>
+    </div>
+
+    <div class="ai-intro">
+      <span class="bulb">💡</span>
+      <div>
+        <strong>Why AI Training?</strong> Companies pay real money to have humans review AI outputs, label data, and generate training examples. No specific degree needed — just attention to detail and good language skills. Projects are flexible and you work on your own schedule.
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <!-- MERCOR -->
+      <div class="card ai-card">
+        <div class="card-top">
+          <div class="card-name">Mercor</div>
+          <span class="card-payout payout-ai">Project-Based Pay</span>
+        </div>
+        <div class="card-desc">
+          Label data, review AI outputs, and generate training sets for top AI companies. Flexible projects — you pick what you work on. No fixed hours, no commute.
+        </div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Medium Effort</span>
+          <span class="tag">📋 Data Labeling</span>
+          <span class="tag">🌍 Remote</span>
+        </div>
+        <div class="card-links">
+          <a href="https://t.mercor.com/H7h7W" target="_blank" rel="noopener" class="btn btn-ai">Apply to Mercor →</a>
+        </div>
+      </div>
+
+      <!-- MICRO1 -->
+      <div class="card ai-card">
+        <div class="card-top">
+          <div class="card-name">Micro1</div>
+          <span class="card-payout payout-ai">Project-Based Pay</span>
+        </div>
+        <div class="card-desc">
+          AI-powered job matching for remote tech and AI roles. Get matched to AI training projects and remote jobs based on your skill set — fast application process.
+        </div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Medium Effort</span>
+          <span class="tag">🤖 AI Jobs</span>
+          <span class="tag">🌍 Remote</span>
+        </div>
+        <div class="card-links">
+          <a href="https://refer.micro1.ai/referral/jobs?referralCode=389b0607-7748-426c-8520-76c0bd981cf3&utm_source=referral&utm_medium=share&utm_campaign=job_referral" target="_blank" rel="noopener" class="btn btn-ai">Apply on Micro1 →</a>
+        </div>
+      </div>
+
+      <!-- TURING -->
+      <div class="card ai-card">
+        <div class="card-top">
+          <div class="card-name">Turing</div>
+          <span class="card-payout payout-ai">Competitive Salary</span>
+        </div>
+        <div class="card-desc">
+          Join as a <strong>Business Analyst</strong> on one of the world's leading remote AI talent platforms. Work with top tech companies — from anywhere, at competitive rates.
+        </div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Medium–High Effort</span>
+          <span class="tag">📊 Business Analyst</span>
+          <span class="tag">🌍 Remote</span>
+        </div>
+        <div class="card-links">
+          <a href="https://work.turing.com/r/WE-yT4N2L7" target="_blank" rel="noopener" class="btn btn-ai">Apply on Turing →</a>
+        </div>
+      </div>
+
+      <!-- SME CAREERS -->
+      <div class="card ai-card">
+        <div class="card-top">
+          <div class="card-name">SME Careers</div>
+          <span class="card-payout payout-ai">Subject Matter Expert Pay</span>
+        </div>
+        <div class="card-desc">
+          Earn as a Subject Matter Expert contributing to AI projects. Leverage your knowledge in specialized fields — consulting, training, and advisory work for AI development.
+        </div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Flexible Hours</span>
+          <span class="tag">🎓 Expert-Level</span>
+          <span class="tag">🌍 Remote</span>
+        </div>
+        <div class="card-links">
+          <a href="https://sme.careers/apply?referral=5cc4d736-aa8e-4790-b1fd-554cb652f6d1" target="_blank" rel="noopener" class="btn btn-ai">Apply on SME Careers →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     🛠️  SKILL-BASED WORK
+═══════════════════════════════════════════ -->
+<section id="skill-based">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">🛠️</div>
+      <div>
+        <div class="section-title">Skill-Based Work</div>
+        <div class="section-desc">Use your existing skills to earn — content creation, social media, and more</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <!-- GIMI -->
+      <div class="card fast-card">
+        <div class="card-top">
+          <div class="card-name">Gimi</div>
+          <span class="card-payout payout-passive">Bank Transfer / USDT</span>
+        </div>
+        <div class="card-desc">
+          Performance-based content rewards platform. Post on social media, earn based on real engagement your posts generate. Min. $10 payout — one of the fastest to cash out.
+        </div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Medium Effort</span>
+          <span class="tag">📱 Social Media</span>
+          <span class="tag">💵 Min $10</span>
+        </div>
+        <div class="card-links">
+          <a href="https://app.gimi.co/sign-up?code=RI-ENNX6Q9R53R6" target="_blank" rel="noopener" class="btn btn-passive">Join Gimi →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     ⭐  TOP PICKS
+═══════════════════════════════════════════ -->
+<section id="top-picks">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">⭐</div>
+      <div>
+        <div class="section-title">Top Picks — Best to Start With</div>
+        <div class="section-desc">Highest value, lowest friction — start here if you're new</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">HoneyGain</div>
+          <span class="card-payout payout-passive">PayPal</span>
+        </div>
+        <div class="card-desc">100% passive — install once and forget. Shares unused internet bandwidth in the background. No effort at all.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">📡 Bandwidth</span>
+        </div>
+        <div class="card-code">Ref Code: <span>FOREVC45FE</span></div>
+        <div class="card-links">
+          <a href="https://join.honeygain.com/FOREVC45FE" target="_blank" rel="noopener" class="btn btn-passive">Join HoneyGain →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">Pawns App</div>
+          <span class="card-payout payout-passive">PayPal</span>
+        </div>
+        <div class="card-desc">Dual income: passive bandwidth sharing + optional surveys & games. Min $5 payout — one of the lowest thresholds.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">📡 Bandwidth + Surveys</span>
+          <span class="tag">💵 Min $5</span>
+        </div>
+        <div class="card-code">Ref Code: <span>7725819</span></div>
+        <div class="card-links">
+          <a href="https://pawns.app/?r=7725819" target="_blank" rel="noopener" class="btn btn-passive">Join Pawns App →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">Sweat Wallet</div>
+          <span class="card-payout payout-passive">SWEAT Token</span>
+        </div>
+        <div class="card-desc">Free money from walking — something you already do every day. Convert your steps into SWEAT crypto. Hold or sell anytime.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🚶 Walk to Earn</span>
+          <span class="tag">🔑 Crypto</span>
+        </div>
+        <div class="card-links">
+          <a href="https://swe.at/r/eon6Z4a9oW" target="_blank" rel="noopener" class="btn btn-passive">Join Sweat Wallet →</a>
+          <a href="https://swcapp.com/i/jesslynfelicia" target="_blank" rel="noopener" class="btn btn-outline">+ SweatCoin App →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">ShopBack</div>
+          <span class="card-payout payout-passive">Cashback</span>
+        </div>
+        <div class="card-desc">Earn cashback on purchases you'd make anyway. Shop at your favourite e-commerce stores — zero extra effort required.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🛍️ Cashback</span>
+        </div>
+        <div class="card-code">Ref Code: <span>DLa9G5</span></div>
+        <div class="card-links">
+          <a href="https://app.shopback.com/VFTpTuSx31b" target="_blank" rel="noopener" class="btn btn-passive">Join ShopBack →</a>
+        </div>
+      </div>
+
+      <div class="card fast-card">
+        <div class="card-top">
+          <div class="card-name">Merge Cats</div>
+          <span class="card-payout payout-games">OVO / Dana</span>
+        </div>
+        <div class="card-desc">Casual merge game — just play and earn. Can cash out daily with no minimum hold period. Fastest cash-out in the list!</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">🐱 Casual Game</span>
+          <span class="tag">⚡ Daily Payout</span>
+        </div>
+        <div class="card-code">Ref Code: <span>3xo967</span></div>
+        <div class="card-links">
+          <a href="https://dosr1htjv377z.cloudfront.net/invite.id.html?code=3xo967" target="_blank" rel="noopener" class="btn btn-games">Play Merge Cats →</a>
+        </div>
+      </div>
+
+      <div class="card fast-card">
+        <div class="card-top">
+          <div class="card-name">Gimi</div>
+          <span class="card-payout payout-passive">Bank Transfer / USDT</span>
+        </div>
+        <div class="card-desc">Performance-based content rewards platform. Post on social media, earn based on real engagement. Min. $10 payout — one of the fastest to cash out.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Medium Effort</span>
+          <span class="tag">📱 Social Media</span>
+          <span class="tag">💵 Min $10</span>
+        </div>
+        <div class="card-links">
+          <a href="https://app.gimi.co/sign-up?code=RI-ENNX6Q9R53R6" target="_blank" rel="noopener" class="btn btn-passive">Join Gimi →</a>
+        </div>
+      </div>
+
+      <div class="card fast-card">
+        <div class="card-top">
+          <div class="card-name">Bling (6 Games)</div>
+          <span class="card-payout payout-games">BTC / PayPal</span>
+        </div>
+        <div class="card-desc">Six Bitcoin-earning games in one. Grind to 16,000 pts/day across Match, Block, Sudoku, Knife Throw, Block 2, and Word Connect.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">₿ Bitcoin</span>
+          <span class="tag">🎯 6 Games</span>
+        </div>
+        <div class="card-links">
+          <a href="https://bln.gg/KHT-R0A-JMD" target="_blank" rel="noopener" class="btn btn-games">Sweet Bitcoin (Match) →</a>
+          <a href="https://bln.gg/B4K-QVE-G5K" target="_blank" rel="noopener" class="btn btn-outline">Block →</a>
+          <a href="https://bln.gg/VVE-3BE-RXM" target="_blank" rel="noopener" class="btn btn-outline">Sudoku →</a>
+          <a href="https://bln.gg/PYN-12C-9RG" target="_blank" rel="noopener" class="btn btn-outline">Knife Throw →</a>
+          <a href="https://bln.gg/ZQP-7W1-AX4" target="_blank" rel="noopener" class="btn btn-outline">Block 2 →</a>
+          <a href="https://bln.gg/M2E-TBF-RA6" target="_blank" rel="noopener" class="btn btn-outline">Word Connect →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     💤  PASSIVE INCOME
+═══════════════════════════════════════════ -->
+<section id="passive">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">💤</div>
+      <div>
+        <div class="section-title">Passive Income</div>
+        <div class="section-desc">Apps that earn while you sleep — install once, earn continuously</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">HoneyGain</div>
+          <span class="card-payout payout-passive">PayPal</span>
+        </div>
+        <div class="card-desc">100% passive — install once and forget. Shares unused internet bandwidth in the background. No effort at all.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">📡 Bandwidth</span>
+        </div>
+        <div class="card-code">Ref Code: <span>FOREVC45FE</span></div>
+        <div class="card-links">
+          <a href="https://join.honeygain.com/FOREVC45FE" target="_blank" rel="noopener" class="btn btn-passive">Join HoneyGain →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">Pawns App</div>
+          <span class="card-payout payout-passive">PayPal</span>
+        </div>
+        <div class="card-desc">Dual income: passive bandwidth sharing + optional surveys & games. Min $5 payout — one of the lowest thresholds.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">📡 Bandwidth + Surveys</span>
+          <span class="tag">💵 Min $5</span>
+        </div>
+        <div class="card-code">Ref Code: <span>7725819</span></div>
+        <div class="card-links">
+          <a href="https://pawns.app/?r=7725819" target="_blank" rel="noopener" class="btn btn-passive">Join Pawns App →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">Sweat Wallet</div>
+          <span class="card-payout payout-passive">SWEAT Token</span>
+        </div>
+        <div class="card-desc">Free money from walking — something you already do every day. Convert your steps into SWEAT crypto. Hold or sell anytime.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🚶 Walk to Earn</span>
+          <span class="tag">🔑 Crypto</span>
+        </div>
+        <div class="card-links">
+          <a href="https://swe.at/r/eon6Z4a9oW" target="_blank" rel="noopener" class="btn btn-passive">Join Sweat Wallet →</a>
+          <a href="https://swcapp.com/i/jesslynfelicia" target="_blank" rel="noopener" class="btn btn-outline">+ SweatCoin App →</a>
+        </div>
+      </div>
+
+      <div class="card star-card">
+        <div class="card-top">
+          <div class="card-name">ShopBack</div>
+          <span class="card-payout payout-passive">Cashback</span>
+        </div>
+        <div class="card-desc">Earn cashback on purchases you'd make anyway. Shop at your favourite e-commerce stores — zero extra effort required.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🛍️ Cashback</span>
+        </div>
+        <div class="card-code">Ref Code: <span>DLa9G5</span></div>
+        <div class="card-links">
+          <a href="https://app.shopback.com/VFTpTuSx31b" target="_blank" rel="noopener" class="btn btn-passive">Join ShopBack →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Bibit</div>
+          <span class="card-payout payout-passive">Investment Returns</span>
+        </div>
+        <div class="card-desc">Invest in mutual funds (reksa dana). Passive growth over time — ideal as a long-term savings and investment tool.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">📈 Investment</span>
+        </div>
+        <div class="card-code">Ref Code: <span>33oxlxz</span></div>
+        <div class="card-links">
+          <a href="https://bibit.id" target="_blank" rel="noopener" class="btn btn-passive">Open Bibit →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Superbank</div>
+          <span class="card-payout payout-passive">7.5% Interest p.a.</span>
+        </div>
+        <div class="card-desc">Deposit interest up to 7.5% p.a. No admin fees & free transfers anywhere. Bonus: extra discounts on Grab.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🏦 Savings</span>
+        </div>
+        <div class="card-code">Ref Code: <span>6QE43G</span></div>
+        <div class="card-links">
+          <a href="https://superbank.onelink.me/KsFY/9mjnjlaa" target="_blank" rel="noopener" class="btn btn-passive">Open Superbank →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">KLED</div>
+          <span class="card-payout payout-passive">PayPal</span>
+        </div>
+        <div class="card-desc">Sell your photos and earn money! Available on App Store. Use ref code for a 10% bonus on earnings.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">📸 Photos</span>
+          <span class="tag">🍎 iOS Only</span>
+        </div>
+        <div class="card-code">Ref Code: <span>A2G249YF</span></div>
+        <div class="card-links">
+          <a href="https://apps.apple.com" target="_blank" rel="noopener" class="btn btn-passive">Search "KLED" on App Store →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Robox</div>
+          <span class="card-payout payout-crypto">ROX Token</span>
+        </div>
+        <div class="card-desc">Mining-style platform rewarding ROX tokens. Runs passively in the background — set up once and collect crypto.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">⛏️ Mining</span>
+        </div>
+        <div class="card-code">Ref Code: <span>2665921</span></div>
+        <div class="card-links">
+          <a href="https://robox.digital/i/2665921" target="_blank" rel="noopener" class="btn btn-passive">Join Robox →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Cloud Mine Crypto</div>
+          <span class="card-payout payout-crypto">Bitcoin (BTC)</span>
+        </div>
+        <div class="card-desc">App-based Bitcoin mining. Collect BTC rewards in the background. Referral bonus up to 10%.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">₿ Bitcoin</span>
+        </div>
+        <div class="card-code">Ref Code: <span>3xLpJm97lgmJZ5O1</span></div>
+        <div class="card-links">
+          <a href="https://cloudminecrypto.com/?invite_code=3xLpJm97lgmJZ5O1" target="_blank" rel="noopener" class="btn btn-crypto">Join Cloud Mine →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     🎮  GAMES & SURVEYS
+═══════════════════════════════════════════ -->
+<section id="games">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">🎮</div>
+      <div>
+        <div class="section-title">Games & Surveys</div>
+        <div class="section-desc">Earn while you play or share your opinion</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card fast-card">
+        <div class="card-top">
+          <div class="card-name">Merge Cats</div>
+          <span class="card-payout payout-games">OVO / Dana</span>
+        </div>
+        <div class="card-desc">Casual merge game — just play and earn. Can cash out daily with no minimum hold period. Fastest cash-out in the list!</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">🐱 Casual Game</span>
+          <span class="tag">⚡ Daily Payout</span>
+        </div>
+        <div class="card-code">Ref Code: <span>3xo967</span></div>
+        <div class="card-links">
+          <a href="https://dosr1htjv377z.cloudfront.net/invite.id.html?code=3xo967" target="_blank" rel="noopener" class="btn btn-games">Play Merge Cats →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Bling Games (6 in 1)</div>
+          <span class="card-payout payout-games">BTC / PayPal</span>
+        </div>
+        <div class="card-desc">Six Bitcoin-earning games: Sweet Bitcoin (Candy Crush-like), Block, Sudoku, Knife Throw, Block 2, Word Connect. Grind to 16,000 pts/day.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">₿ Bitcoin</span>
+          <span class="tag">🎯 6 Games</span>
+        </div>
+        <div class="card-links">
+          <a href="https://bln.gg/KHT-R0A-JMD" target="_blank" rel="noopener" class="btn btn-games">Sweet Bitcoin (Match) →</a>
+          <a href="https://bln.gg/B4K-QVE-G5K" target="_blank" rel="noopener" class="btn btn-outline">Block →</a>
+          <a href="https://bln.gg/VVE-3BE-RXM" target="_blank" rel="noopener" class="btn btn-outline">Sudoku →</a>
+          <a href="https://bln.gg/PYN-12C-9RG" target="_blank" rel="noopener" class="btn btn-outline">Knife Throw →</a>
+          <a href="https://bln.gg/ZQP-7W1-AX4" target="_blank" rel="noopener" class="btn btn-outline">Block 2 →</a>
+          <a href="https://bln.gg/M2E-TBF-RA6" target="_blank" rel="noopener" class="btn btn-outline">Word Connect →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">ySense</div>
+          <span class="card-payout payout-games">PayPal / Gift Cards</span>
+        </div>
+        <div class="card-desc">Survey & microtask platform. Guaranteed $0.01/day minimum from daily surveys — consistent trickle income that adds up.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">📋 Surveys</span>
+        </div>
+        <div class="card-code">Ref Code: <span>126033029</span></div>
+        <div class="card-links">
+          <a href="https://www.ysense.com/?rb=126033029" target="_blank" rel="noopener" class="btn btn-games">Join ySense →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">TopSurveys</div>
+          <span class="card-payout payout-games">PayPal</span>
+        </div>
+        <div class="card-desc">Always pays — even if you only complete half a survey. No wasted effort, no disqualifications mid-way.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">📋 Surveys</span>
+        </div>
+        <div class="card-code">Ref Code: <span>BGA73A</span></div>
+        <div class="card-links">
+          <a href="https://topsurveys.app/register?ref=9ede326d-211c-48b4-873f-c108e02410a3" target="_blank" rel="noopener" class="btn btn-games">Join TopSurveys →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Milieu Surveys</div>
+          <span class="card-payout payout-games">GoPay / OVO / Dana</span>
+        </div>
+        <div class="card-desc">More like a quiz than a boring survey — much less tedious. Sign up and enter the referral code after joining.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">📋 Quiz-Style</span>
+        </div>
+        <div class="card-code">Ref Code: <span>sAqx6pZ</span></div>
+        <div class="card-links">
+          <a href="https://apple.co/2MmnprL" target="_blank" rel="noopener" class="btn btn-games">Download (iOS) →</a>
+          <a href="https://goo.gl/eTHTya" target="_blank" rel="noopener" class="btn btn-outline">Download (Android) →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Xworld</div>
+          <span class="card-payout payout-games">Dana / GoPay / OVO / USDT</span>
+        </div>
+        <div class="card-desc">Complete small tasks & mini-apps to earn tokens redeemable for various e-wallets. Telegram mini-app version also available.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">⚡ Multi-Wallet</span>
+        </div>
+        <div class="card-links">
+          <a href="https://xworld.biz/id-ID/share/land?userId=805070236&ext=1" target="_blank" rel="noopener" class="btn btn-games">Join Xworld (Android) →</a>
+          <a href="https://t.me/cariduitonlinetele" target="_blank" rel="noopener" class="btn btn-outline">Telegram Version →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Telegram Earning Games</div>
+          <span class="card-payout payout-games">Varies</span>
+        </div>
+        <div class="card-desc">Collection of the latest trending Telegram games & mini-apps that pay. Join the channel for ongoing updates and new opportunities.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Low Effort</span>
+          <span class="tag">💬 Telegram</span>
+        </div>
+        <div class="card-links">
+          <a href="https://t.me/cariduitonlinetele" target="_blank" rel="noopener" class="btn btn-games">Join Channel →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     🪙  CRYPTO
+═══════════════════════════════════════════ -->
+<section id="crypto">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">🪙</div>
+      <div>
+        <div class="section-title">Crypto — Faucets & Speculation</div>
+        <div class="section-desc">Free or low-effort crypto — for experimenters only (values are volatile)</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">XNO Faucet (get-xno)</div>
+          <span class="card-payout payout-crypto">XNO / Nano Token</span>
+        </div>
+        <div class="card-desc">Free XNO/Nano token faucet. Claim tokens for free — completely no cost, no mining, just click and collect.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🆓 Free</span>
+          <span class="tag">⚠️ Volatile</span>
+        </div>
+        <div class="card-links">
+          <a href="https://get-xno.com/ref/695fcb8fad913a8d085d6e63" target="_blank" rel="noopener" class="btn btn-crypto">Claim XNO →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ══════════════════════════════════════════
+     🏷️  PROMOS & DISCOUNTS
+═══════════════════════════════════════════ -->
+<section id="promos">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon-wrap">🏷️</div>
+      <div>
+        <div class="section-title">Promos & Discounts</div>
+        <div class="section-desc">Save money on things you already buy</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Qpon</div>
+          <span class="card-payout payout-promo">Vouchers / Discounts</span>
+        </div>
+        <div class="card-desc">Voucher & promo discount platform for Indonesia. Sign up via referral link and enjoy various attractive deals instantly.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">🇮🇩 Indonesia</span>
+        </div>
+        <div class="card-code">Ref Code: <span>94E25N</span></div>
+        <div class="card-links">
+          <a href="https://qpon.id/platform/inviteFriends/friendActivity?inviteCode=94E25N&shareType=INVITE_LINK" target="_blank" rel="noopener" class="btn btn-promo">Join Qpon →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-name">Kopi Kenangan</div>
+          <span class="card-payout payout-promo">50% Discount Voucher</span>
+        </div>
+        <div class="card-desc">Claim a 50% discount voucher from Kopi Kenangan via WhatsApp. Click the link and claim instantly — no sign-up hassle.</div>
+        <div class="card-meta">
+          <span class="tag effort">⏱ Very Low Effort</span>
+          <span class="tag">☕ Coffee</span>
+          <span class="tag">🇮🇩 Indonesia</span>
+        </div>
+        <div class="card-code">Ref Code: <span>Q01J0RNYZ</span></div>
+        <div class="card-links">
+          <a href="https://web.kopikenangan.com/ref/Q01J0RNYZ" target="_blank" rel="noopener" class="btn btn-promo">Claim 50% Off →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>All links are referral links — joining is always free. &nbsp;|&nbsp; Built with ❤️ to help you earn more.</p>
+  <p style="margin-top:.5rem; font-size:.75rem;">Crypto values are volatile. Earning amounts vary by usage and region.</p>
+</footer>
+
+</body>
+</html>
