@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SpawnVault — Kerja Remote &amp; Penghasilan Dolar (USD) dari Rumah | Side Income Apps 2025</title>
+  <title>SpawnVault — Kerja Remote &amp; Penghasilan Dolar USD dari Rumah</title>
 
   <link rel="canonical" href="https://spawnvault.respawnsociety.web.id/" />
   <link rel="alternate" hreflang="en" href="https://spawnvault.respawnsociety.web.id/?lang=en" />
   <link rel="alternate" hreflang="id" href="https://spawnvault.respawnsociety.web.id/?lang=id" />
   <link rel="alternate" hreflang="x-default" href="https://spawnvault.respawnsociety.web.id/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-  <link rel="icon" href="assets/spawnvault.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="assets/spawnvault.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="assets/spawnvault.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
 
-  <meta name="description" content="Butuh kerjaan? Temukan 22+ kerja remote untuk orang Indonesia dengan penghasilan dolar (USD) — AI trainer jobs, paid surveys, play-to-earn, dan passive income apps. Semua dibayar dolar / PayPal, bisa dikerjakan dari rumah. Sudah dites &amp; terbukti bayar." />
+  <meta name="description" content="Butuh kerjaan? 22+ kerja remote dengan penghasilan dolar (USD) — AI trainer, surveys, passive income. Dibayar PayPal, modal 0, terbukti bayar." />
   <meta name="keywords" content="kerjaan remote, kerjaan remote untuk orang indonesia, butuh kerjaan, tempat mencari kerja di rumah, kerja di rumah, kerja dari rumah, kerja online dari rumah, WFH Indonesia, lowongan remote, lowongan kerja remote Indonesia, pekerjaan online dibayar dolar, kerja sampingan online, side hustle Indonesia, freelance Indonesia, freelance dibayar dolar, mencari kerja online, kerja remote luar negeri, kerja remote tanpa pengalaman, digital nomad Indonesia, penghasilan dolar, pendapatan dolar, gaji dolar, gaji USD, bayaran dolar, dibayar dolar, dibayar USD, penghasilan USD, penghasilan tambahan dolar, penghasilan dari rumah, penghasilan pasif dolar, dapat dolar dari hp, cara dapat USD legal, cara dapat penghasilan dolar dari rumah, aplikasi penghasil dolar, aplikasi penghasil uang dolar, apps that pay USD, earn USD from home, remote work Indonesia, work from home Indonesia, side income, side income USD, passive income, passive income USD, earn money online, AI trainer jobs Indonesia, paid surveys, play to earn Indonesia, pendapatan no scam, penghasilan no scam, aplikasi no scam, aplikasi terbukti bayar, aplikasi bukan penipuan, aplikasi anti scam, kerja online terbukti membayar, situs penghasil uang terbukti, legit earning apps, legitimate earning apps Indonesia, no scam earning apps, aplikasi penghasil uang aman, aplikasi penghasil uang legit, kerja online dibayar dolar terbukti, pendapatan paypal, penghasilan paypal, dibayar paypal, dibayar via paypal, gaji paypal, kerja dibayar paypal, aplikasi penghasil paypal, cara dapat paypal, paypal payout apps, earn paypal money, paypal earning apps Indonesia, pendapatan crypto, penghasilan crypto, dibayar crypto, dibayar bitcoin, kerja dibayar crypto, aplikasi penghasil crypto, crypto earning apps Indonesia, earn crypto from home, faucet crypto terbukti, USDT payout, BTC payout, kerja remote bayaran crypto, kerjaan tanpa modal, kerja tanpa modal, pekerjaan tanpa modal, bisnis tanpa modal online, kerjaan online tanpa modal, cara cari uang tanpa modal, kerja sampingan tanpa modal, side income tanpa modal, modal nol, no capital online job, work without capital, kerja remote tanpa modal, penghasilan tanpa modal Indonesia, aplikasi penghasil uang tanpa modal, freelance tanpa modal, modal 0, modal nol rupiah, kerjaan modal 0, kerja modal 0 rupiah, side income modal 0, bisnis modal 0, cara cuan modal 0, penghasilan modal 0, zero capital side hustle, zero capital online job" />
   <meta name="google-site-verification" content="EGQOprR5JCbdQslaW6rL-rVhgWv1dX8FaV4O-N_2iiQ" />
   <meta name="google-site-verification" content="jNv2tBQ3dB_dGhNu_AEzewj7VgSKsv6YXJQMU0Cjinw" />
@@ -296,27 +295,53 @@
     /* ── smooth theme switching ── */
     body, body *:not(.theme-toggle-icon) {
       transition:
-        background-color .45s ease,
-        color .45s ease,
-        border-color .45s ease,
-        box-shadow .45s ease,
-        fill .45s ease,
-        stroke .45s ease;
+        background-color .5s cubic-bezier(.4,.0,.2,1),
+        color .5s cubic-bezier(.4,.0,.2,1),
+        border-color .5s cubic-bezier(.4,.0,.2,1),
+        box-shadow .5s cubic-bezier(.4,.0,.2,1),
+        fill .5s cubic-bezier(.4,.0,.2,1),
+        stroke .5s cubic-bezier(.4,.0,.2,1);
+    }
+    /* During theme swap, force every element to honor the long crossfade
+       (overrides per-component short transitions like .2s on buttons/cards). */
+    body.theme-switching,
+    body.theme-switching *,
+    body.theme-switching *::before,
+    body.theme-switching *::after {
+      transition:
+        background-color .55s cubic-bezier(.4,.0,.2,1) !important,
+        background-image .55s cubic-bezier(.4,.0,.2,1) !important,
+        color .55s cubic-bezier(.4,.0,.2,1) !important,
+        border-color .55s cubic-bezier(.4,.0,.2,1) !important,
+        box-shadow .55s cubic-bezier(.4,.0,.2,1) !important,
+        fill .55s cubic-bezier(.4,.0,.2,1) !important,
+        stroke .55s cubic-bezier(.4,.0,.2,1) !important,
+        opacity .55s cubic-bezier(.4,.0,.2,1) !important;
     }
     @media (prefers-reduced-motion: reduce) {
-      body, body * { transition: none !important; }
+      body, body *,
+      body.theme-switching, body.theme-switching * { transition: none !important; }
     }
     .theme-toggle .theme-toggle-icon {
       display: inline-block;
-      transition: transform .5s cubic-bezier(.4,.2,.2,1), opacity .3s ease;
+      transition: transform .55s cubic-bezier(.4,.2,.2,1), opacity .3s ease;
     }
     body.theme-switching .theme-toggle .theme-toggle-icon {
       transform: rotate(360deg) scale(1.15);
     }
     ::view-transition-old(root),
     ::view-transition-new(root) {
-      animation-duration: .5s;
+      animation-duration: .55s;
+      animation-timing-function: cubic-bezier(.4,.0,.2,1);
     }
+    ::view-transition-old(root) {
+      animation: fade-out .55s cubic-bezier(.4,.0,.2,1) both;
+    }
+    ::view-transition-new(root) {
+      animation: fade-in .55s cubic-bezier(.4,.0,.2,1) both;
+    }
+    @keyframes fade-out { to { opacity: 0; } }
+    @keyframes fade-in  { from { opacity: 0; } }
 
     /* ═══ NAV ═══ */
     nav {
@@ -1693,7 +1718,7 @@
   function toggleTheme() {
     const goingDark = !document.body.classList.contains('dark');
     document.body.classList.add('theme-switching');
-    setTimeout(() => document.body.classList.remove('theme-switching'), 600);
+    setTimeout(() => document.body.classList.remove('theme-switching'), 700);
     if (document.startViewTransition) {
       document.startViewTransition(() => applyTheme(goingDark));
     } else {
