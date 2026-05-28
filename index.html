@@ -1047,10 +1047,10 @@
         </div>
       </div>
 
-      <div class="card" data-effort="low" data-payout="paypal">
-        <div class="card-top"><div class="card-name">Surveyon</div><span class="card-payout">Cash / Gift Cards</span></div>
+      <div class="card" data-effort="low" data-payout="paypal idr">
+        <div class="card-top"><div class="card-name">Surveyon</div><span class="card-payout">PayPal / Dana / GoPay</span></div>
         <div class="card-desc">Global paid survey platform — complete surveys and earn rewards. Use invitation code to get a sign-up bonus when you join.</div>
-        <div class="card-meta"><span class="tag effort">Low Effort</span><span class="tag">Surveys</span><span class="tag">Global</span></div>
+        <div class="card-meta"><span class="tag effort">Low Effort</span><span class="tag">Surveys</span><span class="tag">Global</span><span class="tag">IDR</span></div>
         <div class="card-code">Ref Code: <span class="code-val">P3324224</span><button class="copy-btn" onclick="copyCode(this,'P3324224')">Copy</button></div>
         <div class="card-links">
           <a href="https://www.surveyon.com/invitation?code=P3324224" target="_blank" rel="noopener" class="btn btn-accent">Join SurveyOn →</a>
@@ -1277,9 +1277,10 @@
       } else {
         if (filter === 'very-low' && effort === 'very-low') show = true;
         if (filter === 'low' && (effort === 'low' || effort === 'very-low')) show = true;
-        if (filter === 'paypal' && payout === 'paypal') show = true;
-        if (filter === 'idr' && payout === 'idr') show = true;
-        if (filter === 'crypto-pay' && payout === 'crypto-pay') show = true;
+        const payouts = payout.split(' ');
+        if (filter === 'paypal' && payouts.includes('paypal')) show = true;
+        if (filter === 'idr' && payouts.includes('idr')) show = true;
+        if (filter === 'crypto-pay' && payouts.includes('crypto-pay')) show = true;
       }
       card.classList.toggle('hidden', !show);
     });
